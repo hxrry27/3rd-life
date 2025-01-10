@@ -66,25 +66,20 @@ try:
     new_version = increment_version(current_version, update_type)
     print(f"Updating version to: {new_version}")
 
-    # Ask the user for the datapack name
+     # Ask the user for the datapack name
     datapack_name = input("Enter the name of the datapack: ").strip()
     while not datapack_name:
         print("Datapack name cannot be empty. Please enter a valid name.")
         datapack_name = input("Enter the name of the datapack: ").strip()
 
+    # Define the output path directly in the Minecraft datapacks folder
+    output_zip = minecraft_datapacks / f"{datapack_name}-v{new_version}.zip"
+
     print("Zipping the datapack...")
-    output_zip = repo_path / f"{datapack_name}-v{new_version}.zip"
+    minecraft_datapacks.mkdir(parents=True, exist_ok=True)  # Ensure the datapacks folder exists
     zip_datapack(repo_path, output_zip)
 
-    print(f"Datapack zipped at: {output_zip}")
-
-    print("Copying the datapack to Minecraft's datapacks folder...")
-    minecraft_datapacks.mkdir(parents=True, exist_ok=True)  # Ensure the folder exists
-    shutil.copy(output_zip, minecraft_datapacks / output_zip.name)
-
-    print(f"Saving new version: {new_version}")
-    save_version(new_version)
-
     print(f"Datapack '{datapack_name}' successfully updated to version {new_version} in: {minecraft_datapacks}")
+    save_version(new_version)
 except Exception as e:
     print(f"An error occurred: {e}")

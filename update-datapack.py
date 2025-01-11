@@ -44,7 +44,7 @@ def get_current_version():
     if version_file.exists():
         with open(version_file, "r") as vf:
             return vf.read().strip()
-    return "1.0.0"  # Default starting version
+    return "0.0.0"  # Default starting version
 
 # Function to save the new version
 def save_version(version):

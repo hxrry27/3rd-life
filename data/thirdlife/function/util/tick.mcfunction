@@ -1,0 +1,6 @@
+function thirdlife:gameplay/assign_team
+function thirdlife:gameplay/initialize_deaths
+function thirdlife:gameplay/initialize_new_player
+function thirdlife:gameplay/new_player_watcher
+function thirdlife:util/handle_reset
+
